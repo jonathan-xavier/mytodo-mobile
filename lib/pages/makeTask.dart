@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
+import 'DropDownTask.dart';
+
 
 class BuildTask extends StatefulWidget {
   @override
@@ -16,9 +13,10 @@ class _BuildTaskState extends State<BuildTask> {
   TextEditingController _controllerTitulo = TextEditingController();
 
   TextEditingController _controllerDescricao = TextEditingController();
-  String dropdownValue = 'one';
+  //isso aqui é do combobox
+   String dropdownValue = "One";
 
-  List categoria = ["Trabalho", "Casa", "Música", "Estudos", "Viagem"];
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +40,9 @@ class _BuildTaskState extends State<BuildTask> {
               child: Text(
                 "Add Tarefa",
                 style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: secundaryColor,
+                  color: Colors.black87,
                 ),
               ),
             ),
@@ -62,9 +60,9 @@ class _BuildTaskState extends State<BuildTask> {
             ),
 
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: TextField(
-                maxLines: 4,
+                maxLines: 3,
                 cursorColor: secundaryColor,
                 controller: _controllerDescricao,
                 decoration: InputDecoration(
@@ -73,32 +71,18 @@ class _BuildTaskState extends State<BuildTask> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.all(8.0),
-            //   child: DropdownButton<String>(
-            //     value: dropdownValue,
-            //     icon: Icon(Icons.arrow_downward),
-            //     iconSize: 24,
-            //     elevation: 16,
-            //     style: TextStyle(color: Colors.deepPurple),
-            //     underline: Container(
-            //       height: 2,
-            //       color: Colors.deepPurpleAccent,
-            //     ),
-            //     onChanged: (String newValue) {
-            //       setState(() {
-            //         dropdownValue = newValue;
-            //       });
-            //     },
-            //     items: <String>['One', 'Two', 'Free', 'Four']
-            //         .map<DropdownMenuItem<String>>((String value) {
-            //       return DropdownMenuItem<String>(
-            //         value: value,
-            //         child: Text(value),
-            //       );
-            //     }).toList(),
-            //   ),
-            // )
+
+            //aqui vai ficar o combo box
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  DropDownTask(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
