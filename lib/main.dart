@@ -1,27 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mytodo/makeTask.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
+import 'package:mytodo/components/my_home.dart';
+import 'package:mytodo/screens/categories_tasks_screen.dart';
 import 'sizeConfig.dart';
-import 'card.dart';
-import 'makeTask.dart';
+import 'components/makeTask.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(
-      scaffoldBackgroundColor: Color(0xFFF8F9FB),
-      appBarTheme: AppBarTheme(
-        color: Colors.transparent,
-        elevation: 0,
-        brightness: Brightness.light,
+  runApp(
+    MaterialApp(
+      localizationsDelegates: [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale("pt", "BR"),
+      ],
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple,
+        accentColor: Colors.amber,
+        canvasColor: Color(0xFFF8F9FB),
+          //color: Colors.transparent,
+          //elevation: 1,RGBO(255, 254, 229, 1),
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.light,
+        ),
       ),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+      //criando rota nomeada
+      routes: {
+        '/categories-tasks': (ctx) => CategoriesTasksScreen(),
+      },
     ),
-    debugShowCheckedModeBanner: false,
-    home: Home(),
-  ));
+  );
 }
 
 class Home extends StatelessWidget {
@@ -29,68 +41,16 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(top: 20),
-          icon: SvgPicture.asset(
-            "assets/icons/menu.svg",
-            height: SizeConfig.defaultSize * 2,
-          ),
-          onPressed: () {},
-        ),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20),
-              child: Row(
-                children: [
-                  Text(
-                    "Categorias",
-                    style: TextStyle(
-                      color: secundaryColor,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        BuildCard(),
-                        BuildCard(),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        BuildCard(),
-                        BuildCard(),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: MyHome(),
 
       //botao para adicionar task
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.add,
-          color: Colors.white,
+          color: Colors.black,
         ),
-        backgroundColor: secundaryColor,
+        //backgroundColor: secundaryColor,
         onPressed: () {
           Navigator.push(
             context,
